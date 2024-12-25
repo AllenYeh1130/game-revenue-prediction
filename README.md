@@ -57,6 +57,7 @@ To evaluate whether weekly marketing costs yield a return on investment and asse
   - 將類別數據轉換為數值。
   - 使用 Optuna 尋找最佳化參數組合。
   - 評估模型的特徵重要性。
+  
   Validates LightGBM and XGBoost model, including:
   - Testing the effectiveness of min-max normalization and log transformation.
   - Converting categorical data into numerical values.
