@@ -48,10 +48,11 @@ To evaluate whether weekly marketing costs yield a return on investment and asse
   - 將訓練結果、參數與模型上傳至 MLflow
     Uploads training results, parameters, and the model to MLflow.
 - **predit.py**
-   使用預測數據（CSV 格式）與訓練好的模型（PKL 格式），進行預測並輸出處理後的結果
-   Utilizes prediction data (in CSV format) and a trained model (in PKL format) to generate predictions and process the output results.
+  使用預測數據（CSV 格式）與訓練好的模型（PKL 格式），進行預測並輸出處理後的結果
+  Utilizes prediction data (in CSV format) and a trained model (in PKL format) to generate predictions and process the output results.
 - **lgbm_test.py**
 - **xgboost_test.py**
+
   驗證 LightGBM 跟 XGBoost 模型，包含以下步驟：
   - 驗證 min-max 正規化與 log 轉換的效果。
   - 將類別數據轉換為數值。
