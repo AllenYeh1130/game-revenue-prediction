@@ -31,3 +31,34 @@ To evaluate whether weekly marketing costs yield a return on investment and asse
 ---
 
 ### 各檔案描述 | File Descriptions
+- **data_processing.py**  
+  玩家遊戲行為資料前處理，包含類別、整合及每日數據，並新增斜率特徵，用於觀察玩家遊戲行為隨時間變化的趨勢（如熱情增加或減少的指標）
+  Handles preprocessing of player behavior data, including categorical conversion, data integration, and generating daily metrics.
+  It also creates slope-based features to observe trends such as increased or decreased engagement over time.
+- **insert_data.py**  
+  更新過去 180 天內的新玩家行為數據，並寫入 MySQL 資料庫，提升後續模型訓練與測試的效率。
+  Updates and inserts new player behavior data from the past 180 days into a MySQL database, improving the efficiency of future model training and testing.
+- **modeling.py**  
+  - 將類別資訊轉換為數值，並匯出 encoders.pkl 供後續測試資料使用。
+    Converts categorical data to numerical values and exports encoders.pkl for use with test data.
+  - 使用交叉驗證（CV）尋找 LASSO 模型的最佳化參數。
+    Finds optimal parameters for the LASSO model using cross-validation (CV).
+  - 紀錄 LASSO 模型的交叉驗證結果
+    Records LASSO model cross-validation results.
+  - 將訓練結果、參數與模型上傳至 MLflow
+    Uploads training results, parameters, and the model to MLflow.
+- **predit.py**
+   使用預測數據（CSV 格式）與訓練好的模型（PKL 格式），進行預測並輸出處理後的結果
+   Utilizes prediction data (in CSV format) and a trained model (in PKL format) to generate predictions and process the output results.
+- **lgbm_test.py**
+- **xgboost_test.py**
+  驗證 LightGBM 跟 XGBoost 模型，包含以下步驟：
+  - 驗證 min-max 正規化與 log 轉換的效果。
+  - 將類別數據轉換為數值。
+  - 使用 Optuna 尋找最佳化參數組合。
+  - 評估模型的特徵重要性。
+  Validates LightGBM and XGBoost model, including:
+  - Testing the effectiveness of min-max normalization and log transformation.
+  - Converting categorical data into numerical values.
+  - Using Optuna to find the optimal parameter set.
+  - Assessing feature importance for the model.
