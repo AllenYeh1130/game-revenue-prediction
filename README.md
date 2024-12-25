@@ -47,19 +47,18 @@ To evaluate whether weekly marketing costs yield a return on investment and asse
   更新過去 180 天內的新玩家行為數據，並寫入 MySQL 資料庫，提升後續模型訓練與測試的效率。
 
   Updates and inserts new player behavior data from the past 180 days into a MySQL database, improving the efficiency of future model training and testing.
+
 - **modeling.py**  
   - 將類別資訊轉換為數值，並匯出 encoders.pkl 供後續測試資料使用。
-  
-    Converts categorical data to numerical values and exports encoders.pkl for use with test data.
   - 使用交叉驗證（CV）尋找 LASSO 模型的最佳化參數。
-  
-    Finds optimal parameters for the LASSO model using cross-validation (CV).
   - 紀錄 LASSO 模型的交叉驗證結果
-  
-    Records LASSO model cross-validation results.
   - 將訓練結果、參數與模型上傳至 MLflow
   
-    Uploads training results, parameters, and the model to MLflow.
+  - Converts categorical data to numerical values and exports encoders.pkl for use with test data.
+  - Finds optimal parameters for the LASSO model using cross-validation (CV).
+  - Records LASSO model cross-validation results.
+  - Uploads training results, parameters, and the model to MLflow.
+   
 - **predit.py**
   使用預測數據（CSV 格式）與訓練好的模型（PKL 格式），進行預測並輸出處理後的結果
   Utilizes prediction data (in CSV format) and a trained model (in PKL format) to generate predictions and process the output results.
