@@ -49,29 +49,30 @@ To evaluate whether weekly marketing costs yield a return on investment and asse
   Updates and inserts new player behavior data from the past 180 days into a MySQL database, improving the efficiency of future model training and testing.
 
 - **modeling.py**  
-  - 將類別資訊轉換為數值，並匯出 encoders.pkl 供後續測試資料使用。
-  - 使用交叉驗證（CV）尋找 LASSO 模型的最佳化參數。
-  - 紀錄 LASSO 模型的交叉驗證結果
-  - 將訓練結果、參數與模型上傳至 MLflow
+  1. 將類別資訊轉換為數值，並匯出 encoders.pkl 供後續測試資料使用。
+  2. 使用交叉驗證（CV）尋找 LASSO 模型的最佳化參數。
+  3. 紀錄 LASSO 模型的交叉驗證結果
+  4. 將訓練結果、參數與模型上傳至 MLflow
   
-  - Converts categorical data to numerical values and exports encoders.pkl for use with test data.
-  - Finds optimal parameters for the LASSO model using cross-validation (CV).
-  - Records LASSO model cross-validation results.
-  - Uploads training results, parameters, and the model to MLflow.
+  1. Converts categorical data to numerical values and exports encoders.pkl for use with test data.
+  2. Finds optimal parameters for the LASSO model using cross-validation (CV).
+  3. Records LASSO model cross-validation results.
+  4. Uploads training results, parameters, and the model to MLflow.
    
 - **predit.py**
   使用預測數據（CSV 格式）與訓練好的模型（PKL 格式），進行預測並輸出處理後的結果
+  
   Utilizes prediction data (in CSV format) and a trained model (in PKL format) to generate predictions and process the output results.
 - **lgbm_test.py 、 xgboost_test.py**
 
   驗證 LightGBM 跟 XGBoost 模型，包含以下步驟：
-  - 驗證 min-max 正規化與 log 轉換的效果。
-  - 將類別數據轉換為數值。
-  - 使用 Optuna 尋找最佳化參數組合。
-  - 評估模型的特徵重要性。
+  1. 驗證 min-max 正規化與 log 轉換的效果。
+  2. 將類別數據轉換為數值。
+  3. 使用 Optuna 尋找最佳化參數組合。
+  4. 評估模型的特徵重要性。
   
   Validates LightGBM and XGBoost model, including:
-  - Testing the effectiveness of min-max normalization and log transformation.
-  - Converting categorical data into numerical values.
-  - Using Optuna to find the optimal parameter set.
-  - Assessing feature importance for the model.
+  1. Testing the effectiveness of min-max normalization and log transformation.
+  2. Converting categorical data into numerical values.
+  3. Using Optuna to find the optimal parameter set.
+  4. Assessing feature importance for the model.
