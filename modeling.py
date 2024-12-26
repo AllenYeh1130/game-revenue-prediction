@@ -242,11 +242,12 @@ try:
         ### 計算模型指標
         train_pred = model.predict(X_train)
         # Full_train_MAPE = (train_pred.sum() - y_train.sum()) / y_train.sum()
-        model_start_date = int(start_date.strftime("%Y%m%d"))
-        model_end_date = int(end_date.strftime("%Y%m%d"))
+        model_start_date = pd.to_datetime(start_date, format='%Y-%m-%d')
+        model_end_date = pd.to_datetime(end_date, format='%Y-%m-%d')
         CV_MAPE = cv_mape_result
         CV_RMSE = cv_rmse_result
         Alpha = best_alpha
+        # LASSO有feature selection的功能，過度收斂的特徵會被拔除，這邊篩選還有參數的數據就是選擇的特徵
         feature_num = len(X_train.columns[model.coef_ != 0])
         features = X_train.columns[model.coef_ != 0]
         coefficients = model.coef_[model.coef_ != 0]
@@ -261,11 +262,14 @@ try:
         mlflow.log_metric("Alpha",Alpha)
         mlflow.log_metric("feature_num", feature_num)
         
-        # 匯出特徵資訊
-        coef_df = pd.DataFrame()
-        coef_df['features'] = features
-        coef_df['cofficients'] = coefficients
-        coef_df.to_csv('features.csv', index=False)
+        # 匯出訓練結果 (CSV)
+        train_result_df = pd.DataFrame()
+        train_result_df['model_start_date'] = [model_start_date]
+        train_result_df['model_end_date'] = [model_end_date]
+        train_result_df['CV_MAPE'] = [CV_MAPE]
+        train_result_df['CV_RMSE'] = [CV_RMSE]
+        train_result_df['LASSO_best_Alpha'] = [Alpha]
+        train_result_df.to_csv('model_result.csv', index=False)
             
         # temp資料夾中創all9fun_package資料夾
         os.mkdir(os.path.join(path,"all9fun_package"))
