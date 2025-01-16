@@ -1,6 +1,5 @@
 # Game-Revenue-Prediction
-預測每週玩家的180日累積儲值金額，以利行銷跟營運決策
-
+預測每週玩家的180日累積儲值金額，以利行銷跟營運決策  
 Predict the 180-day cumulative revenue of weekly players to support marketing and operational decisions.
 
 ![features](images/result_plot.png)
@@ -23,19 +22,23 @@ To evaluate whether weekly marketing costs yield a return on investment and asse
 
 ### 輸出結果 | Output Results
 1. **model.pkl**  
-   已訓練完成的模型，可透過 predict.py 進行預測，也可以在 MLFlow 上建立備份（檔案未包含，因模型屬於敏感資料）。  
+   已訓練完成的模型，可透過 predict.py 進行預測（檔案未包含，因模型屬於敏感資料）。  
    The trained model file, used for predictions via predict.py. It can also be backed up on MLFlow (not included in GitHub due to sensitivity concerns).
 2. **encoders.pkl**  
    用於將類別數據轉換為數值的編碼標準，基於訓練數據生成，供測試數據的類別數據轉換使用。  
    Encoders for converting categorical data into numerical values. These are generated from training data and applied to transform categorical data in testing.
-3. **model_result.csv**  
+3. **model_result.txt**  
    模型交叉驗證結果，包含 MAPE、RMSE 以及最佳的 alpha 值。  
-   The model cross-validation results, including MAPE, RMSE, and the best alpha.
+   The model cross-validation results, including MAPE, RMSE, and the best alpha.  
+   ![model_result](images/model_result.png)
 4. **features.csv**  
    列出各特徵的重要性，能直觀呈現對模型影響較大的特徵。  
-   Lists feature importance, providing a clear view of which features have the most significant impact on the model.
-
+   Lists feature importance, providing a clear view of which features have the most significant impact on the model.  
    ![features](images/features.png)
+5. **predict_result.csv**  
+   預測各用戶營收的結果。
+   Predicted revenue results for each user.  
+   ![predict_result](images/predict_result.png)
 
 ---
 
@@ -54,13 +57,13 @@ To evaluate whether weekly marketing costs yield a return on investment and asse
   1. 將類別資訊轉換為數值，並匯出 `encoders.pkl` 供後續測試資料使用。
   2. 使用交叉驗證（CV）尋找最佳化參數，以提升模型效能。
   3. 紀錄交叉驗證結果，包括模型效能與參數細節。
-  4. 將訓練結果、參數與模型上傳至 MLflow，以便後續分析與版本管理。
+  4. 將訓練結果、參數與模型匯出，並上傳至 MLflow 便後續分析與版本管理。
   
   Build the LASSO model and upload to MLflow:
   1. Converts categorical data to numerical values and exports `encoders.pkl` for use with test data.
   2. Finds optimal parameters for the LASSO model using cross-validation (CV) to improve performance.
   3. Records cross-validation results, including model performance and parameter details.
-  4. Uploads training results, parameters, and the model to MLflow for future analysis and version control.
+  4. Export training results, parameters, and models, and upload them to MLflow for further analysis and version control.
 
 - **predit.py**  
   使用預測數據（CSV 格式）與訓練好的模型（PKL 格式），進行預測並輸出處理後的結果。  
