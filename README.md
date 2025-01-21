@@ -2,7 +2,7 @@
 預測每週玩家的180日累積儲值金額，以利行銷跟營運決策  
 Predict the 180-day cumulative revenue of weekly players to support marketing and operational decisions.
 
-![features](images/result_plot.png)
+![result_plot](images/result_plot.png)
 
 ### 專案簡介 | Project Overview
 本專案使用遊戲玩家前 7 天的行為資訊來預測 180 天的累積儲值金額，並比較三種模型（LASSO、LightGBM 和 XGBoost）的預測成效。
