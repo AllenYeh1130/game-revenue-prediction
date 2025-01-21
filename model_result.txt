@@ -1,8 +1,0 @@
-Model Performance Metrics:
-model_start_date    : 2024/1/1
-model_end_date      : 2024/5/31
-CV_MAPE   : 4.51
-CV_RMSE    : 34.89
-LASSO_best_Alpha    : 0.012
-
-
