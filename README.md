@@ -53,17 +53,17 @@ To evaluate whether weekly marketing costs yield a return on investment and asse
   Updates and inserts new player behavior data from the past 180 days into a MySQL database, improving the efficiency of future model training and testing.
 
 - **modeling.py**  
-  建立LASSO模型並上傳至MLflow:
-  1. 將類別資訊轉換為數值，並匯出 `encoders.pkl` 供後續測試資料使用。
-  2. 使用交叉驗證（CV）尋找最佳化參數，以提升模型效能。
-  3. 紀錄交叉驗證結果，包括模型效能與參數細節。
-  4. 將訓練結果、參數與模型匯出，並上傳至 MLflow 便後續分析與版本管理。
+  建立 LASSO 模型並上傳至 MLflow：
+  1. 將數據集劃分為訓練集（train）和測試集（test），並將類別特徵轉換為數值格式，匯出 encoders.pkl 以供後續測試資料使用。
+  2. 使用 LASSO 進行交叉驗證（CV），執行 50 次以尋找穩定且最佳的參數。
+  3. 基於最佳參數進行建模，測試並記錄模型效能與參數細節。
+  4. 將訓練結果、最佳參數與模型匯出，並上傳至 MLflow 便於後續分析與版本管理。
   
   Build the LASSO model and upload to MLflow:
-  1. Converts categorical data to numerical values and exports `encoders.pkl` for use with test data.
-  2. Finds optimal parameters for the LASSO model using cross-validation (CV) to improve performance.
-  3. Records cross-validation results, including model performance and parameter details.
-  4. Export training results, parameters, and models, and upload them to MLflow for further analysis and version control.
+  1. Split the dataset into training and testing sets, convert categorical features into numerical values, and export encoders.pkl for use with future test data.
+  2. Perform cross-validation (CV) using LASSO for 50 iterations to identify stable and optimal parameters.
+  3. Build the model with the optimal parameters, test it, and document performance metrics and parameter details.
+  4. Export the training results, optimal parameters, and the model, then upload them to MLflow for further analysis and version management.
 
 - **predit.py**  
   使用預測數據（CSV 格式）與訓練好的模型（PKL 格式），進行預測並輸出處理後的結果。  
